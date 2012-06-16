@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def require_user
-    @user = User.find_by_email(session[:user_email])
+    @user = User.find_by_id(session[:user_id])
     redirect_to(new_session_url) unless @user
   end
 end

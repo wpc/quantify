@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quantify</title>
+    <%= stylesheet_link_tag    "application", :media => nil %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body data-spy="scroll" data-target=".subnav" data-offset="50" class="login">
+    <div class="container-fluid">
+      <div class="login_form">
+        <div class="credentials">
+          <%= form_tag(sessions_path) do %>
+            <div id="error_explanation" class="error"><%= flash[:login_error] %></div>
+          
+            <div class="form_item">
+              <%= label_tag :email %>
+              <%= text_field_tag :email, nil %>
+            </div>
+
+            <div class="form_item">
+              <%= label_tag :password %>
+              <%= password_field_tag :password %>
+            </div>
+          
+            <div class="form_item login_action">
+              <%= submit_tag 'Sign in', :class => 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+       <div class="login_form">
+         <h2> New user? Sign up </h2>
+        <div class="credentials">
+          <%= form_for(@user) do |f| %>
+
+            <div id="error_explanation" class="error">
+              <a class="dismiss delete_parent"></a>
+              <ul>
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="form_item">
+              <%= f.label :name %>
+              <%= f.text_field :name %>
+            </div>
+
+            <div class="form_item">
+              <%= f.label :email %>
+              <%= f.text_field :email %>
+            </div>
+
+            <div class="form_item">
+              <%= f.label :password %>
+              <%= f.password_field :password %>
+            </div>
+            
+            <div class="form_item">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation %>
+            </div>
+
+          
+            <div class="form_item login_action">
+              <%= submit_tag 'Sign up', :class => 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <footer>
+        <ul>
+          <li id="copyright">
+              Copyright &copy; 2012 Fei Jin
+          </li>
+        </ul>
+      </footer>
+    </div>
+  </body>
+</html>

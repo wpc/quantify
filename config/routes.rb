@@ -4,6 +4,7 @@ Quantify::Application.routes.draw do
 
   resources :features
   resources :sessions
+  resources :users
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
@@ -51,7 +52,7 @@ Quantify::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'features#index'
 
   # See how all your routes lay out with "rake routes"
 
