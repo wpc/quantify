@@ -1,0 +1,20 @@
+<%= form_for(@feature) do |f| %>
+  <div id="error_explanation" class="error">
+    <a class="dismiss delete_parent"></a>
+    <ul>
+      <% @feature.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="form_item">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form_item actions">
+    <%= submit_tag 'Save', :class => 'btn btn-primary' %>
+  </div>
+
+<% end %>
