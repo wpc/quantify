@@ -2,7 +2,11 @@ Quantify::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :features
+  resources :features do
+    member do
+      post 'add_value_to'
+    end
+  end
   resources :sessions
   resources :users
 

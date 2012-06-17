@@ -1,0 +1,42 @@
+<%= form_for(@value, :url => add_value_to_feature_url(@feature)) do |f| %>
+  <div id="error_explanation" class="error">
+    <a class="dismiss delete_parent"></a>
+    <ul>
+      <% @value.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="form_item">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="form_item">
+    <%= f.label :at %>
+    <%= f.text_field :at %>
+  </div>
+
+  <div class="form_item actions">
+    <%= submit_tag 'Add', :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<table class="values">
+  <thead>
+    <tr>
+      <td>Value</td>
+      <td>Date</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feature.values.each do |value| %>
+      <tr class="value">
+        <td class="value"><%= value.value %></td>
+        <td class="at"><%= value.at.to_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

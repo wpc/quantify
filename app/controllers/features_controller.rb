@@ -3,6 +3,15 @@ class FeaturesController < ApplicationController
     @features = @user.features
   end
 
+  def show
+    @feature = Feature.find(params[:id])
+    @value = Value.new(:at => Time.now.to_date)
+  end
+
+  def new
+    @feature = Feature.new
+  end
+
   def new
     @feature = Feature.new
   end
@@ -14,5 +23,16 @@ class FeaturesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def add_value_to
+    @feature = Feature.find(params[:id])
+    @value = Value.new(params[:value])
+    if @feature.values << @value
+      redirect_to feature_url(@feature)
+    else
+      render :show
+    end
+    
   end
 end
