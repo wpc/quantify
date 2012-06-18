@@ -1,4 +1,4 @@
-<%= form_for(@value, :url => add_value_to_feature_url(@feature)) do |f| %>
+<%= form_for(@value, :url => add_value_to_measure_url(@measure)) do |f| %>
   <div id="error_explanation" class="error">
     <a class="dismiss delete_parent"></a>
     <ul>
@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @feature.values.each do |value| %>
+    <% @measure.values.each do |value| %>
       <tr class="value">
         <td class="value"><%= value.value %></td>
         <td class="at"><%= value.at.to_date %></td>

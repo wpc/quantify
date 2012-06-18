@@ -1,10 +1,10 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2" id="sidebar">
-      <%= link_to "New measure", new_feature_path %>
-      <ul class="features">
-        <% @features.each do |feature| %>
-          <li class="feature"> <%= link_to feature.name, feature %></li>
+      <%= link_to "New measure", new_measure_path %>
+      <ul class="measures">
+        <% @measures.each do |measure| %>
+          <li class="measure"> <%= link_to measure.name, measure %></li>
         <% end %>
       </ul>
     </div>

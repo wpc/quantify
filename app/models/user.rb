@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :features
+  has_many :measures
   
   has_secure_password
   attr_accessible :email, :name, :password, :password_confirmation

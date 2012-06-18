@@ -2,7 +2,7 @@ Quantify::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :features do
+  resources :measures do
     member do
       post 'add_value_to'
     end
@@ -56,7 +56,7 @@ Quantify::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'features#index'
+  root :to => 'measures#index'
 
   # See how all your routes lay out with "rake routes"
 

@@ -1,6 +1,6 @@
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
+# of editing this file, please use the migrations measure of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
 # Note that this schema.rb definition is the authoritative source for your
@@ -13,14 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20120614063411) do
 
-  create_table "features", :force => true do |t|
+  create_table "measures", :force => true do |t|
     t.string   "name",       :null => false
     t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "features", ["user_id", "name"], :name => "index_features_on_user_id_and_name", :unique => true
+  add_index "measures", ["user_id", "name"], :name => "index_measures_on_user_id_and_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "name",            :null => false
@@ -31,9 +31,10 @@ ActiveRecord::Schema.define(:version => 20120614063411) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["name"], :name => "index_users_on_name", :unique => true
 
   create_table "values", :force => true do |t|
-    t.integer  "feature_id", :null => false
+    t.integer  "measure_id", :null => false
     t.float    "value",      :null => false
     t.datetime "at",         :null => false
   end
