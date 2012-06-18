@@ -19,7 +19,7 @@ class MeasuresController < ApplicationController
   def create
     @measure = @user.measures.build(params[:measure])
     if @measure.save
-      redirect_to measures_url
+      redirect_to measure_url(@measure)
     else
       render :new
     end

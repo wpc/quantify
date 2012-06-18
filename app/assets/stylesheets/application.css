@@ -12,7 +12,11 @@
  *= require_self
  *= require_tree .
 */
-.container-fluid {
-    padding-right: 3.5%;
-    padding-left: 3.5%;
+
+.footer {
+  margin-top: 55px;
+  padding: 20px 36px 0 0;
+  border-top: 1px solid #e5e5e5;
+  text-align: right;
 }
+
