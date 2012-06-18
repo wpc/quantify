@@ -6,10 +6,35 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        <a class="brand" href="#">QUANTIFY</a>
+        <div class="nav-collapse">
+            <ul class="nav">
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid"><%= content_for?(:content) ? yield(:content) : yield %></div>  
+
+  <%= javascript_include_tag "application" %>
+  <script type="text/javascript">
+    <%= yield :js %>
+  </script>
 <body>
 
 
-  <div id="content"><%= content_for?(:content) ? yield(:content) : yield %></div>
+
 
 </body>
 </html>
