@@ -11,6 +11,7 @@ gem 'sqlite3'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+  gem "therubyracer", "~> 0.10.1"
   gem 'less-rails-bootstrap', '~> 2.0.12'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
