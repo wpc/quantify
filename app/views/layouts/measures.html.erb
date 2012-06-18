@@ -1,0 +1,20 @@
+<% content_for :content do %>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2" id="sidebar">
+        <%= link_to "New measure", new_measure_path %>
+        <ul class="measures">
+          <% @user.measures.each do |measure| %>
+            <li class="measure"> <%= link_to measure.name, measure %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="span10" id="content">
+        <%= content_for?(:measure_content) ? yield(:measure_content) : yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<%= render :template => 'layouts/application' %>
