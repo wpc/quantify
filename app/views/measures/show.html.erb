@@ -1,4 +1,4 @@
-<%= form_for(@value, :url => add_value_to_measure_url(@measure)) do |f| %>
+<%= form_for(@value, :url => add_value_to_measure_url(@measure), :html => {:class => 'well form-inline'}) do |f| %>
   <div id="error_explanation" class="error">
     <a class="dismiss delete_parent"></a>
     <ul>
@@ -8,19 +8,10 @@
     </ul>
   </div>
 
-  <div class="form_item">
-    <%= f.label :value %>
-    <%= f.text_field :value %>
-  </div>
+  <%= f.text_field :value, :placeholder => "Input new value" %>
+  <%= f.text_field :at %>
 
-  <div class="form_item">
-    <%= f.label :at %>
-    <%= f.text_field :at %>
-  </div>
-
-  <div class="form_item actions">
-    <%= submit_tag 'Add', :class => 'btn btn-primary' %>
-  </div>
+  <%= submit_tag 'Add', :class => 'btn btn-primary' %>
 <% end %>
 
 
