@@ -5,6 +5,7 @@ Quantify::Application.routes.draw do
   resources :measures do
     member do
       post 'add_value_to'
+      get 'values_of'
     end
   end
   resources :sessions

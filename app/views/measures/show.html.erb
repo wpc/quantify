@@ -1,4 +1,4 @@
-<%= form_for(@value, :url => add_value_to_measure_url(@measure), :html => {:class => 'well form-inline'}) do |f| %>
+<%= form_for(@value, :url => add_value_to_measure_path(@measure), :html => {:class => 'well form-inline'}) do |f| %>
   <div id="error_explanation" class="error">
     <a class="dismiss delete_parent"></a>
     <ul>
@@ -8,26 +8,79 @@
     </ul>
   </div>
 
-  <%= f.text_field :value, :placeholder => "Input new value" %>
-  <%= f.text_field :at, :placeholder => "When is value captured" %>
+  <%= f.text_field :value, :placeholder => "Input new data" %>
+  <%= f.text_field :at, :placeholder => "Data capture time, default is now" %>
 
   <%= submit_tag 'Add', :class => 'btn btn-primary' %>
 <% end %>
 
+<div id="values"> </div>
 
-<table class="values">
-  <thead>
-    <tr>
-      <td>Value</td>
-      <td>Date</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @measure.values.each do |value| %>
-      <tr class="value">
-        <td class="value"><%= value.value %></td>
-        <td class="at"><%= value.at.to_date %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+<%= content_for :js do %>
+$(function() {
+
+  function valueAt(v) {
+    return new Date(v.at);
+  }
+
+  function valueValue(v) {
+    return v.value;
+  }
+    
+  
+  d3.json("<%= values_of_measure_path(@measure, :format => 'json') %>", function(data) {
+    console.log(data)
+    var margin = {top: 10, right: 10, bottom: 20, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+    var x = d3.time.scale()
+      .domain([d3.min(data, valueAt), d3.max(data, valueAt)])
+      .range([0, width]);
+
+    var y = d3.scale.linear()
+      .domain([d3.min(data, valueValue) * 0.9, d3.max(data, valueValue) * 1.1])
+      .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+    var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("left");
+
+    var line = d3.svg.line()
+      .x(function(d) { return x(valueAt(d)); })
+      .y(function(d) { return y(valueValue(d)); });
+
+    var svg = d3.select("#values").append("svg")
+      .datum(data)
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+    svg.append("path")
+      .attr("class", "line")
+      .attr("d", line);
+
+    svg.selectAll(".dot")
+      .data(data)
+      .enter().append("circle")
+      .attr("class", "dot")
+      .attr("cx", line.x())
+      .attr("cy", line.y())
+      .attr("r", 3.5);
+  })
+})
+<% end %>

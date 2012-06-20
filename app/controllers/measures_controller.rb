@@ -1,11 +1,11 @@
 class MeasuresController < ApplicationController
   def index
-    @measures = @user.measures
+    redirect_to measure_url( @user.measures.first)
   end
 
   def show
     @measure = Measure.find(params[:id])
-    @value = Value.new(:at => Time.now.to_date)
+    @value = Value.new
   end
 
   def new
@@ -32,7 +32,11 @@ class MeasuresController < ApplicationController
       redirect_to measure_url(@measure)
     else
       render :show
-    end
-    
+    end    
+  end
+
+  def values_of
+    @measure = Measure.find(params[:id])
+    render :json => @measure.values
   end
 end
