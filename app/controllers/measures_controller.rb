@@ -1,6 +1,10 @@
 class MeasuresController < ApplicationController
   def index
-    redirect_to measure_url( @user.measures.first)
+    if @user.measures.count > 0
+      redirect_to measure_url(@user.measures.first)
+    else
+      redirect_to new_measure_url
+    end
   end
 
   def show
