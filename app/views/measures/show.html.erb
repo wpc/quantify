@@ -9,7 +9,7 @@
   </div>
 
   <%= f.text_field :value, :placeholder => "Input new data" %>
-  <%= f.text_field :at, :placeholder => "Data capture time, default is now" %>
+  <%= f.text_field :at, :placeholder => "Data capture time, default is today" %>
 
   <%= submit_tag 'Add', :class => 'btn btn-primary' %>
 <% end %>
@@ -27,6 +27,12 @@ $(function() {
   function valueValue(v) {
     return v.value;
   }
+
+  
+  function extendRange(range, ratio) {
+    var win = d3.last(range) - d3.first(range);
+    return [d3.first(range) - win * ratio / 2.0, d3.last(range) + win * ratio / 2.0];
+  }
     
   
   d3.json("<%= values_of_measure_path(@measure, :format => 'json') %>", function(data) {
@@ -40,7 +46,7 @@ $(function() {
       .range([0, width]);
 
     var y = d3.scale.linear()
-      .domain([d3.min(data, valueValue) * 0.9, d3.max(data, valueValue) * 1.1])
+      .domain(extendRange([d3.min(data, valueValue), d3.max(data, valueValue)], 0.5))
       .range([height, 0]);
 
     var xAxis = d3.svg.axis()
