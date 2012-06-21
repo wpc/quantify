@@ -45,12 +45,14 @@ $(function() {
       .domain([d3.min(data, valueAt), d3.max(data, valueAt)])
       .range([0, width]);
 
+
     var y = d3.scale.linear()
-      .domain(extendRange([d3.min(data, valueValue), d3.max(data, valueValue)], 0.5))
+      .domain(extendRange([d3.min(data, valueValue), d3.max(data, valueValue)], 0.7))
       .range([height, 0]);
 
     var xAxis = d3.svg.axis()
       .scale(x)
+      .ticks(d3.time.days, 1)
       .orient("bottom");
     var yAxis = d3.svg.axis()
       .scale(y)
