@@ -9,7 +9,7 @@ class MeasuresController < ApplicationController
 
   def show
     @measure = Measure.find(params[:id])
-    @value = Value.new
+    @value = Value.new(:at => Time.now.to_date)
   end
 
   def new

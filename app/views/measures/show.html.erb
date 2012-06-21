@@ -9,7 +9,7 @@
   </div>
 
   <%= f.text_field :value, :placeholder => "Input new data" %>
-  <%= f.text_field :at, :placeholder => "Data capture time, default is today" %>
+  <%= f.text_field :at, :placeholder => "Data capture time, default is today", :class => 'date-input' %>
 
   <%= submit_tag 'Add', :class => 'btn btn-primary' %>
 <% end %>
