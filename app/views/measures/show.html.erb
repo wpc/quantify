@@ -36,7 +36,6 @@ $(function() {
     
   
   d3.json("<%= values_of_measure_path(@measure, :format => 'json') %>", function(data) {
-    console.log(data)
     var margin = {top: 10, right: 10, bottom: 20, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
