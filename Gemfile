@@ -12,7 +12,7 @@ group :production, :staging do
 end
 
 group :development, :testing do
-  gem 'sqlite3'
+  gem "sqlite3-ruby", "~> 1.3.0", :require => "sqlite3"
 end
 
 # Gems used only for assets and not required
