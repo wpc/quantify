@@ -37,7 +37,7 @@ $(function() {
   
   d3.json("<%= values_of_measure_path(@measure, :format => 'json') %>", function(data) {
     var margin = {top: 10, right: 10, bottom: 20, left: 40},
-    width = 960 - margin.left - margin.right,
+    width = $("#values").parent().width() - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
     var x = d3.time.scale()
