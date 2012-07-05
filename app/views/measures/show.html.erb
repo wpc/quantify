@@ -36,6 +36,7 @@ $(function() {
     
   
   d3.json("<%= values_of_measure_path(@measure, :format => 'json') %>", function(data) {
+
     var margin = {top: 10, right: 10, bottom: 20, left: 40},
     width = $("#values").parent().width() - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -87,7 +88,13 @@ $(function() {
       .attr("class", "dot")
       .attr("cx", line.x())
       .attr("cy", line.y())
-      .attr("r", 3.5);
-  })
-})
+      .attr("r", 3.5)
+      .attr("title", function(d) {
+        return d.value + " (" + new Date(d.at).toDateString() + ")";
+      })
+
+
+    $("#values .dot").tooltip();
+  });
+});
 <% end %>

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3.v2
+//= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require_tree .
 
